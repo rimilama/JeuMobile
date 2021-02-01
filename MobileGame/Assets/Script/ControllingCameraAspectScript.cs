@@ -45,4 +45,12 @@ public class ControllingCameraAspectScript : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }   
+    }
+
 }
