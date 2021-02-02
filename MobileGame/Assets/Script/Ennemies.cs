@@ -28,4 +28,13 @@ public class Ennemies : MonoBehaviour
         transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
         Tp.Bordure(this.gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "bullet(Clone)")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
