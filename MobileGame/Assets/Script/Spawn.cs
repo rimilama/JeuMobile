@@ -34,4 +34,6 @@ public class Spawn : MonoBehaviour
         GameObject ennemiesClone = Instantiate(EnnemiesList[Random.Range(0, EnnemiesList.Length)], new Vector2(position.x, position.y), transform.rotation);
         ennemiesClone.SetActive(true);
     }
+
+
 }
