@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Personnage : MonoBehaviour
 {
+    public EndGame End;
     public Teleporte Tp;
     public GameObject bullet;
     private Rigidbody2D rb;
@@ -12,31 +14,45 @@ public class Personnage : MonoBehaviour
     public float rotationSpeed;
     public float shootRate;
     private float nextShoot;
+    public KeyCode[] controle;
+    public int ScoreTotal;
+    public Text textScore;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ScoreTotal = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         Tp.Bordure(this.gameObject);
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(controle[4]))
         {
             if (nextShoot > 0)
             {
                 nextShoot -= Time.deltaTime;
             }
-            if(nextShoot <= 0)
+            if (nextShoot <= 0)
             {
                 Shoot();
             }
         }
-        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(controle[0]) || Input.GetKey(controle[1]) || Input.GetKey(controle[2]) || Input.GetKey(controle[3]))
         {
             Deplacement();
             Rotation();
+        }
+        textScore.text = "Score : " + ScoreTotal.ToString();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ennemie")
+        {
+            //UnityEditor.EditorApplication.isPlaying = false;
+            End.GameOver();
         }
     }
 

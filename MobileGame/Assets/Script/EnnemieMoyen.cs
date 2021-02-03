@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemieGrand : Ennemies
+public class EnnemieMoyen : Ennemies
 {
     public GameObject NewEnnemie;
 
     protected override void Start()
     {
         base.Start();
-        Score = 20;
+        Score = 50;
     }
 
     protected void OnCollisionEnter2D(Collision2D collision)

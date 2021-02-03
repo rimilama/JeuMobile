@@ -7,6 +7,7 @@ TagManager:
   - Size3
   - Size2
   - Size1
+  - Ennemie
   layers:
   - Default
   - TransparentFX
