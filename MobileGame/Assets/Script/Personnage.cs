@@ -51,7 +51,6 @@ public class Personnage : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ennemie")
         {
-            //UnityEditor.EditorApplication.isPlaying = false;
             End.GameOver();
         }
     }
