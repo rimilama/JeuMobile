@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
     public GameObject personnage;
+    public GameObject Panel;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,16 @@ public class Menu : MonoBehaviour
     public void Jouer()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void Instruction()
+    {
+        Panel.SetActive(true);
+    }
+
+    public void CloseInstruction()
+    {
+        Panel.SetActive(false);
     }
 
     public void Quitter()
