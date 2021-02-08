@@ -41,12 +41,20 @@ public class EndGame : MonoBehaviour
             Ennemies[i].GetComponent<Ennemies>().rotationSpeed = 0;
         }
         texte_score.text = "Votre score est de " + Personnage.GetComponent<Personnage>().ScoreTotal +  " points";
+        if (!PlayerPrefs.HasKey("BestScore"))
+        {
+            PlayerPrefs.SetInt("BestScore", Personnage.GetComponent<Personnage>().ScoreTotal);
+        }else if(PlayerPrefs.GetInt("BestScore")< Personnage.GetComponent<Personnage>().ScoreTotal)
+        {
+            PlayerPrefs.SetInt("BestScore", Personnage.GetComponent<Personnage>().ScoreTotal);
+        }
+        
         Panel.SetActive(true);
-
     }
 
     public void RetourMenu()
     {
+
         SceneManager.LoadScene(0);
     }
 

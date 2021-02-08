@@ -8,16 +8,26 @@ public class Menu : MonoBehaviour
 {
     public GameObject personnage;
     public GameObject Panel;
+    public GameObject Score;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (PlayerPrefs.HasKey("BestScore"))
+        {
+            Score.SetActive(true);
+            Score.GetComponent<Text>().text = "Meilleur score : " + PlayerPrefs.GetInt("BestScore");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         personnage.transform.Rotate(new Vector3(0, 0, 50) * Time.deltaTime);
+    }
+
+    public void BestScore()
+    {
+
     }
 
     public void Jouer()
