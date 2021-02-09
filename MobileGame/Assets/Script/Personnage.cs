@@ -17,6 +17,7 @@ public class Personnage : MonoBehaviour
     public KeyCode[] controle;
     public int ScoreTotal;
     public Text textScore;
+    public JoystickButton AttackButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class Personnage : MonoBehaviour
     void Update()
     {
         Tp.Bordure(this.gameObject);
-        if (Input.GetKey(controle[4]))
+        if (Input.GetKey(controle[4]) || AttackButton.IsPressed)
         {
             if (nextShoot > 0)
             {
