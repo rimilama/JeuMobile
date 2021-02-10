@@ -18,6 +18,7 @@ public class Personnage : MonoBehaviour
     public int ScoreTotal;
     public Text textScore;
     public JoystickButton AttackButton;
+    public Joystick joystick;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +41,7 @@ public class Personnage : MonoBehaviour
                 Shoot();
             }
         }
-        if (Input.GetKey(controle[0]) || Input.GetKey(controle[1]) || Input.GetKey(controle[2]) || Input.GetKey(controle[3]))
+        if (joystick.InputDir != Vector2.zero || Input.GetKey(controle[0]) || Input.GetKey(controle[1]) || Input.GetKey(controle[2]) || Input.GetKey(controle[3]))
         {
             Deplacement();
             Rotation();
@@ -59,6 +60,7 @@ public class Personnage : MonoBehaviour
     void Deplacement()
     {
         Vector2 InputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        InputDir = joystick.InputDir;
         rb.AddForce(InputDir * moveSpeed);
         if(rb.velocity.magnitude > maxSpeed)
         {
@@ -69,6 +71,7 @@ public class Personnage : MonoBehaviour
     void Rotation()
     {
         float Angle = Mathf.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"))*Mathf.Rad2Deg-90;
+        Angle = Mathf.Atan2(joystick.InputDir.x*(-1), joystick.InputDir.y) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }

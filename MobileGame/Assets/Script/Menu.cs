@@ -48,6 +48,6 @@ public class Menu : MonoBehaviour
     public void Quitter()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
